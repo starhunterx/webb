@@ -1,11 +1,14 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import { SignOutButton, SignedIn, UserButton } from '@clerk/nextjs';
+import { dark } from '@clerk/themes';
+import { SignOutButton, SignedIn, UserButton, useUser } from '@clerk/nextjs';
 import { Logout } from '@mui/icons-material';
 import Menu from './Menu';
 
 const LeftSideBar = () => {
+  const { user, isLoaded} = useUser()
+  console.log(user)
   return (
     <div className='h-screen left-0 top-0 sticky overflow-auto px-10 py-6 flex flex-col gap-6 max-md:hidden custom-text-light-1'>
       <Link href="/">
@@ -45,7 +48,7 @@ const LeftSideBar = () => {
         <hr />
 
         <div className='flex gap-4 items-center'>
-            <UserButton />
+            <UserButton appearance={{ baseTheme: dark }}/>
             <p className='text-light-1 text-body-bold'>Manage Account</p>
         </div>
 
